@@ -1,0 +1,14 @@
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\bin\Debug\netcoreapp2.1\CoreServer.deps.json
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\bin\Debug\netcoreapp2.1\CoreServer.runtimeconfig.json
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\bin\Debug\netcoreapp2.1\CoreServer.runtimeconfig.dev.json
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\bin\Debug\netcoreapp2.1\CoreServer.dll
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\bin\Debug\netcoreapp2.1\CoreServer.pdb
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\CoreServer.csprojAssemblyReference.cache
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\CoreServer.csproj.CoreCompileInputs.cache
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\CoreServer.RazorAssemblyInfo.cache
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\CoreServer.RazorAssemblyInfo.cs
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\CoreServer.AssemblyInfoInputs.cache
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\CoreServer.AssemblyInfo.cs
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\CoreServer.RazorTargetAssemblyInfo.cache
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\CoreServer.dll
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\CoreServer.pdb
