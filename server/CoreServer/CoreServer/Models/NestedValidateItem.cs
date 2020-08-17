@@ -11,10 +11,10 @@ namespace CoreServer.Models
     {
         [SharedValidation]
 
-        public string ValidateString { get; set; }
+        public string String { get; set; }
 
         [SharedValidation]
 
-        public DateTime? ValidateDate { get; set; }
+        public DateTime? Date { get; set; }
     }
 }

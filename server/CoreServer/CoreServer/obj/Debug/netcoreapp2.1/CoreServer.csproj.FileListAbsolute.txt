@@ -12,3 +12,7 @@ C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer
 C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\CoreServer.RazorTargetAssemblyInfo.cache
 C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\CoreServer.dll
 C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\CoreServer.pdb
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\bin\Debug\netcoreapp2.1\appsettings.Development.json
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\bin\Debug\netcoreapp2.1\appsettings.json
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\CoreServer.genruntimeconfig.cache

@@ -10,26 +10,26 @@ namespace CoreServer.Models
     [SharedValidatable]
     public class ValidateItem
     {
-        public string String { get; set; }
+
+        public ValidateItem() { }
 
         [SharedValidation]
-        public string ValidateString { get; set; }
+        public string String { get; set; }
+
+
+        [SharedValidation]
 
         public DateTime? Date { get; set; }
 
-        [SharedValidation]
 
-        public DateTime? ValidateDate { get; set; }
-
-
-        public IEnumerable<string> ListOfString { get; set; }
 
         [SharedValidation(Status.Approved, ValidateCondition.GreaterOrEqual)]
 
-        public IEnumerable<string> ListOfValidateString { get; set; }
+        public IEnumerable<string> ListOfString { get; set; }
 
 
         public IEnumerable<NestedItem> ListOfItems { get; set; } = new List<NestedItem>();
+
 
         [SharedValidation(Status.Approved)]
 

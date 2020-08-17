@@ -21,11 +21,13 @@ namespace CoreServer.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetValidators()
+        public ActionResult GetData()
         {
             //the second param typeof(NestedValidateItem) is unnessasary because ValidateItem contains NestedValidateItem validator metadata
             return Ok(_validationFactory.GetValidatorSchemas(typeof(ValidateItem), typeof(NestedValidateItem)));
         }
+
+     
 
         // POST api/values
         [HttpPost]

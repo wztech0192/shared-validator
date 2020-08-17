@@ -275,12 +275,7 @@ namespace CoreServer.Validators.Factory
 
         private bool isValidatable(Type type)
         {
-            var isValid = type.IsDefined(VALIDATABLE_TYPE, false);
-            if (!isValid)
-            {
-                throw new Exception($"{type.Name} is not validatable");
-            }
-            return isValid;
+            return type.IsDefined(VALIDATABLE_TYPE, false);
         }
     }
 }
