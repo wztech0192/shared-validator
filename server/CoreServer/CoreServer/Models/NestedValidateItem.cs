@@ -9,7 +9,7 @@ namespace CoreServer.Models
     [SharedValidatable]
     public class NestedValidateItem
     {
-        [SharedValidation]
+        [SharedValidation(Message = "Custom message for string required!")]
 
         public string String { get; set; }
 

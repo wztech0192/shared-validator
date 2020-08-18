@@ -19,8 +19,8 @@ namespace CoreServer.Validators.Attributes
 
         public virtual bool Required { get; set; } = true;
 
-        public virtual string Message { get; set; } 
-
+        public virtual string Message { get; set; }
+        public virtual bool ValidateChildren { get; set; } = true;
     }
 
     public enum ValidateCondition

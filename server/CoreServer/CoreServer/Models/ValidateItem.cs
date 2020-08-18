@@ -22,8 +22,12 @@ namespace CoreServer.Models
         public DateTime? Date { get; set; }
 
 
+        [SharedValidation]
 
-        [SharedValidation(Status.Approved, ValidateCondition.GreaterOrEqual)]
+        public NestedValidateItem NestedValidateItem { get; set; }
+
+
+        [SharedValidation(Status.Completed, ValidateCondition.Equal)]
 
         public IEnumerable<string> ListOfString { get; set; }
 
@@ -31,7 +35,7 @@ namespace CoreServer.Models
         public IEnumerable<NestedItem> ListOfItems { get; set; } = new List<NestedItem>();
 
 
-        [SharedValidation(Status.Approved)]
+        [SharedValidation(Status.Approved, ValidateCondition.GreaterOrEqual)]
 
         public IEnumerable<NestedValidateItem> ListOfValidatableItems { get; set; } = new List<NestedValidateItem>();
 

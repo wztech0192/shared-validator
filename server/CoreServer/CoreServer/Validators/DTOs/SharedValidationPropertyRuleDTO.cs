@@ -21,6 +21,7 @@ namespace CoreServer.Validators.DTOs
             Message = validationAttr.Message;
             MessageName = messageName;
             PropertyType = propType.ToLower();
+            ValidateChildren = validationAttr.ValidateChildren;
         }
 
         public string UseValidator { get; set; }
@@ -36,5 +37,7 @@ namespace CoreServer.Validators.DTOs
         public string MessageName { get; set; }
 
         public string PropertyType { get; set; }
+
+        public bool ValidateChildren { get;  set; } 
     }
 }

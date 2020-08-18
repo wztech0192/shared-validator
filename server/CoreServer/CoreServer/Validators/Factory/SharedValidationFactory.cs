@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 
 namespace CoreServer.Validators.Factory
 {
-    public class SharedValidationFactory: ISharedValidationFactory
+    public class SharedValidationFactory : ISharedValidationFactory
     {
         private static readonly Regex NAME_FORMAT_PATTERN = new Regex(@"[A-Z][a-z]");
         private static readonly Type VALIDATABLE_TYPE = typeof(SharedValidatableAttribute);
@@ -50,12 +50,16 @@ namespace CoreServer.Validators.Factory
 
                             var validatePropertyDTO = new SharedValidationPropertyRuleDTO(metadata, formatName(prop.Name), getTypeName(propType));
 
+                            if (isList(propType))
+                            {
+                                propType = propType.GetGenericArguments().Last();
+                            }
+
                             //add nested validatable object
                             if (isValidatable(propType))
                             {
-                                var nestedType = prop.GetType();
-                                validatePropertyDTO.UseValidator = prop.GetType().Name;
-                                PopulateValidatorSchema(validators, nestedType);
+                                validatePropertyDTO.UseValidator = propType.Name;
+                                PopulateValidatorSchema(validators, propType);
                             }
 
                             validatorDTO.PropertyRules[prop.Name] = validatePropertyDTO;
@@ -65,16 +69,20 @@ namespace CoreServer.Validators.Factory
             }
         }
 
+    
+
         public IList<string> Validate<T, TStatus>(T target, TStatus compareStatus, IList<string> errorMessages = null)
         {
-
-            if(errorMessages == null)
+            if (errorMessages == null)
             {
                 errorMessages = new List<string>();
             }
+            return validate(typeof(T), target, compareStatus, errorMessages);
+        }
 
-            var targetType = typeof(T);
 
+        public IList<string> validate<TStatus>(Type targetType, object target, TStatus compareStatus, IList<string> errorMessages)
+        {
             if (isValidatable(targetType))
             {
                 if (target == null)
@@ -92,7 +100,6 @@ namespace CoreServer.Validators.Factory
                             if (isValid)
                             {
                                 var valueType = value.GetType();
-                                var test = valueType.IsInstanceOfType(typeof(IEnumerable));
 
                                 if (isValidatable(value.GetType()))
                                 {
@@ -102,7 +109,7 @@ namespace CoreServer.Validators.Factory
                                 {
                                     isValid = validateString(value);
                                 }
-                                else if (typeof(IEnumerable).IsAssignableFrom(valueType))
+                                else if (isList(valueType))
                                 {
                                     isValid = validateList(value, prop, metadata, errorMessages, compareStatus);
                                 }
@@ -115,11 +122,8 @@ namespace CoreServer.Validators.Factory
                     });
                 }
             }
-
             return errorMessages;
         }
-
-
 
         private bool validateStatus<TStatus>(TStatus compareStatus, SharedValidationAttribute metadata)
         {
@@ -139,20 +143,20 @@ namespace CoreServer.Validators.Factory
 
             if (statusType.IsEnum || isNumeric(statusType))
             {
-                var num1 = Convert.ToInt64(attrStatus);
-                var num2 = Convert.ToInt64(compareStatus);
+                var attrNumb = Convert.ToInt64(attrStatus);
+                var compareNum = Convert.ToInt64(compareStatus);
                 switch (metadata.ValidateCondition)
                 {
                     case ValidateCondition.Equal:
-                        return num2 == num1;
+                        return compareNum == attrNumb;
                     case ValidateCondition.Greater:
-                        return num2 > num1;
+                        return compareNum > attrNumb;
                     case ValidateCondition.GreaterOrEqual:
-                        return num2 >= num1;
+                        return compareNum >= attrNumb;
                     case ValidateCondition.Less:
-                        return num2 < num1;
+                        return compareNum < attrNumb;
                     case ValidateCondition.LessOrEqual:
-                        return num2 <= num1;
+                        return compareNum <= attrNumb;
                 }
             }
 
@@ -166,32 +170,25 @@ namespace CoreServer.Validators.Factory
 
         private bool validateList<TStatus>(object value, PropertyInfo prop, SharedValidationAttribute metadata, IList<string> errorMessages, TStatus compareStatus)
         {
-
-            IEnumerable<object> list;
-            if (value is IDictionary)
-            {
-                list = ((IDictionary)value).Values.Cast<object>();
-            }
-            else
-            {
-                list = ((IEnumerable)value).Cast<object>();
-            }
-
+            IEnumerable<object> list = getList(value);
             if (list.Count() <= 0)
             {
                 return false;
             }
 
-            for(int i =0; i< list.Count(); i++)
+            if (metadata.ValidateChildren)
             {
-                var obj = list.ElementAt(i);
-                if (obj is string && !validateString(obj))
+                for (int i = 0; i < list.Count(); i++)
                 {
-                    errorMessages.Add(getRequiredMessage(prop, i, metadata));
-                }
-                else
-                {
-                    Validate(obj, compareStatus, errorMessages);
+                    var obj = list.ElementAt(i);
+                    if (obj == null || (obj is string && !validateString(obj)))
+                    {
+                        errorMessages.Add(getRequiredMessage(prop, i, metadata));
+                    }
+                    else
+                    {
+                        validate(obj.GetType(), obj, compareStatus, errorMessages);
+                    }
                 }
             }
             return true;
@@ -247,6 +244,18 @@ namespace CoreServer.Validators.Factory
             return "object";
         }
 
+        private IEnumerable<object> getList(object value)
+        {
+            if (value is IDictionary)
+            {
+                return  ((IDictionary)value).Values.Cast<object>();
+            }
+            else
+            {
+                return ((IEnumerable)value).Cast<object>();
+            }
+        }
+
         private SharedValidationAttribute getValidationMetadata(PropertyInfo prop)
         {
             return (SharedValidationAttribute)Attribute.GetCustomAttribute(prop, VALIDATION_TYPE);
@@ -276,6 +285,11 @@ namespace CoreServer.Validators.Factory
         private bool isValidatable(Type type)
         {
             return type.IsDefined(VALIDATABLE_TYPE, false);
+        }
+
+        private bool isList(Type type)
+        {
+            return type != typeof(string) &&  typeof(IEnumerable).IsAssignableFrom(type);
         }
     }
 }
