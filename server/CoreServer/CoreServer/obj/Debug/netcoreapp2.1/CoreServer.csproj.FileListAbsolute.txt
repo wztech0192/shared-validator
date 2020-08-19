@@ -16,3 +16,4 @@ C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer
 C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\bin\Debug\netcoreapp2.1\appsettings.json
 C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\bin\Debug\netcoreapp2.1\Properties\launchSettings.json
 C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\CoreServer.genruntimeconfig.cache
+C:\Users\Wei Zheng\Desktop\Project\shared-validator\server\CoreServer\CoreServer\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
