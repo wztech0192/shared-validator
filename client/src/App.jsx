@@ -1,7 +1,6 @@
 import React from "react";
-import ValidatorFactory from "./validators/validatorFactory";
 import DisplayValidators from "./components/DisplayValidators";
-import { postData, EMPTY_OBJECT } from "./common";
+import { postData, getData, EMPTY_OBJECT } from "./common";
 import ValidateItem from "./components/ValidateItem";
 
 const defaultState = {
@@ -11,7 +10,7 @@ const defaultState = {
     nestedValidateItem: { string: "", date: "" },
     listOfString: [],
     listOfItems: [],
-    listOfValidatableItems: []
+    listOfValidatableItems: [],
 };
 
 function App() {
@@ -20,16 +19,7 @@ function App() {
 
     const [errors, setErrors] = React.useState();
     React.useEffect(() => {
-        (async () => {
-            const res = await fetch("https://localhost:44359/api/test");
-            if (res.ok) {
-                let data = await res.json();
-                setValidatorLoaded(ValidatorFactory.load(data));
-                console.log(ValidatorFactory);
-            } else {
-                alert("HTTP-Error: " + res.status, " - Try reload!");
-            }
-        })();
+        getData(setValidatorLoaded);
     }, []);
 
     return (
@@ -48,20 +38,12 @@ function App() {
                     >
                         Clear
                     </button>
-                    <button onClick={postData(validateItem, setErrors, true)}>
-                        Validate and Post
-                    </button>
+                    <button onClick={postData(validateItem, setErrors, true)}>Validate and Post</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button onClick={postData(validateItem, setErrors, false)}>
-                        Post Without Validate
-                    </button>
+                    <button onClick={postData(validateItem, setErrors, false)}>Post Without Validate</button>
                     <br />
                     <br />
-                    <ValidateItem
-                        validateItem={validateItem}
-                        setValidateItem={setValidateItem}
-                        errors={errors}
-                    />
+                    <ValidateItem validateItem={validateItem} setValidateItem={setValidateItem} errors={errors} />
                 </div>
             )}
         </div>
