@@ -44,7 +44,7 @@ http://wztechs.com/shared-validator/
 import ValidatorFactory, { validateFor } from "./validatorFactory";
 
 //load metadata
-setValidatorLoaded(ValidatorFactory.load(data));
+const isLoaded = ValidatorFactory.load(data);
 
 //validate model
 const errors = validateFor.ValidateItem(item);
