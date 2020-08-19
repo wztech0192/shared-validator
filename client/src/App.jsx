@@ -10,7 +10,7 @@ const defaultState = {
     nestedValidateItem: { string: "", date: "" },
     listOfString: [],
     listOfItems: [],
-    listOfValidatableItems: [],
+    listOfValidatableItems: []
 };
 
 function App() {
@@ -22,6 +22,7 @@ function App() {
         getData(setValidatorLoaded);
     }, []);
 
+    const jsonError = React.useMemo(() => errors && JSON.stringify(errors, null, 4), [errors]);
     return (
         <div className="App">
             {!isValidatorLoaded ? (
@@ -38,12 +39,25 @@ function App() {
                     >
                         Clear
                     </button>
-                    <button onClick={postData(validateItem, setErrors, true)}>Validate and Post</button>
+                    <button onClick={postData(validateItem, setErrors, true)}>
+                        Validate and Post
+                    </button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <button onClick={postData(validateItem, setErrors, false)}>Post Without Validate</button>
+                    <button onClick={postData(validateItem, setErrors, false)}>
+                        Post Without Validate
+                    </button>
                     <br />
                     <br />
-                    <ValidateItem validateItem={validateItem} setValidateItem={setValidateItem} errors={errors} />
+                    <ValidateItem
+                        validateItem={validateItem}
+                        setValidateItem={setValidateItem}
+                        errors={errors}
+                    />
+                    <hr />
+                    <div>
+                        Error Object:
+                        {errors ? <pre>{jsonError}</pre> : "No Error"}
+                    </div>
                 </div>
             )}
         </div>

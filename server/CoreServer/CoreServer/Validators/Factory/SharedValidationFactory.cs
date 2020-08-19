@@ -101,9 +101,9 @@ namespace CoreServer.Validators.Factory
                             {
                                 var valueType = value.GetType();
 
-                                if (isValidatable(value.GetType()))
+                                if (isValidatable(valueType))
                                 {
-                                    Validate(value, compareStatus, errorMessages);
+                                    validate(valueType, value, compareStatus, errorMessages);
                                 }
                                 else if (value is string)
                                 {
