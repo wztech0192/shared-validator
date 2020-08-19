@@ -22,7 +22,7 @@ http://wztechs.com/shared-validator/
 2. Backend validation
 
 ```C#
-    public ActionResult PostData()
+    public ActionResult PostData(ValidateItem item)
     {
         var _validationFactory = new ValidationFactory();
         var errors = _validationFactory.Validate(item);
