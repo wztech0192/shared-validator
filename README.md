@@ -2,6 +2,10 @@
 
 A simple shared validator that is able to validate both js front-end and .net back-end
 
+## Demo
+
+http://wztechs.com/shared-validator/
+
 ## How to use
 
 1. Add SharedValidation Attribute in the Backend model
